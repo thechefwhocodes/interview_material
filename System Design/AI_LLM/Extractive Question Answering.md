@@ -1,0 +1,85 @@
+Extractive Question Answering
+- Data Source
+    - GCS for unstructured data
+        - Forms
+        - Images
+        - PDFs on policy
+    - Relation DB for structure data
+        - Patient information
+        - Healthcare Provider
+    - External data source like EHR 
+- Document Ingestion
+    - Forms 
+        - OCR to preserve tabular information
+    - External Data
+        - Fetch via EHR
+        - use Text to API
+    - Structure Data
+        - Store data in database (for Text to SQL)
+        - Convert data to notes for LLM to process tabular data
+    - Unstructured Data
+        - Chunk documents by semantic boundaries and not fixed length
+        - Add document summary to each chunk to preserve the overall context of the document
+    - Images
+        - ViT to embedd images
+        - Vision Language Models
+    - Joint Embedding Architecture to unify all embeddings 
+        - use domain specific model to generate embeddings
+        - Best used for multimodel search (Cross-Modal Retrieval), for Visual Heavy Documentation, for Contextual Grounding, when image is needed to understand text context 
+        - Leverage Contrastive Learning or Fine-Tune CLIP
+- LLM
+    - Mid Training
+        - Train the model on domain specfic corpus on next token prediction task
+    - Supervised Fine Tuning
+        - Train the model to follow instructions
+            - User: [PROMPT], AI [RESPONSE]
+            - Train to predict AI response using next token prediction
+            - Calculate loss and gradient only on response tokens
+    - Post Training
+        - Preference Optimization
+            - Reward Function 
+            - RLHF
+            - DPO
+        - Winning response should be picked based on Evidence Grounding
+- Retrieval
+    - Hierarchical RAG
+        - Works when relevant context in not scattered across 1000+ pages
+            - Every document needs a summary layer
+        - When LLM don't need domain specific knowledge  
+        - Use Tree Structure
+            - Leaf node with actual chunks of 512 token
+            - Parent node with summary of multiple leaf nodes (like section or page)
+            - Root node with summary of documents
+- ReRanker
+    - Cross Encoder for ranking retrieved documents against the query
+- Metrics & Evaluation
+    - Recall over Precision
+    - Natual Language Inference
+        - Ensure generated text is backed by the retrieved chunks
+        - Use a smaller model to classify if claim is backed by retrieved chunks
+        - Use it for self correction as well
+            - If claim is not backed by chunks, re-read/re-retrieve chunks
+    - LLM as a Judge
+- Observability and Tracing
+    - Every peice of generated text should be backed by the source and reasonsing (via Chain of Thoughts via citation in LLM)
+    - PII masking
+    - Human in the loop for final check 
+
+
+Train a Cross Encoder for Ranking:
+- Select a domain specific baseline model
+- Prepare training dataset
+    - Use established dataset for domain specific query-documents pairs 
+    - Use LLM to create questions based on the documents snippets
+    - Use section header as query and paragraph as the relavent document
+    - Have Human review synthetic pairs
+- Add Hard Negative
+    - Use BM25 to fetch documents which has keywords but not relavent to query
+- Fine Tune model
+    - [CLS] + query + [SEP] + document
+    - Train the full model
+        - use [CLS] token for classifier head
+        - or use Mean Polling (average of all tokens) for classifier head 
+        - Use LoRA
+    - Test the model on hidden dataset
+- Use Fine-Tuned Cross Encoder in RAG
