@@ -22,7 +22,7 @@
 - Choosing the right ML category
   - Supervised
     - Regression
-    - Classififcation
+    - Classification
       - Binary
       - Multiclass
   - Unsupervised
@@ -36,7 +36,7 @@
 
 
 
-## Data Prepration
+## Data Preparation
 
 - Data Engineering (Design and build pipelines for collecting, storing, retrieving and processing)
   - Data Source
@@ -50,14 +50,14 @@
         - Categorical
           - Ordinal (gender)
           - Nominal (not happy, neutral, happy)
-      - Unstructure (stored in non-relational dbs)
+      - Unstructured (stored in non-relational dbs)
         - audio, video, text, images (stored in data lake like GCS)
 - Feature Engineering
   - Requires domain knowledge to select and extract features from raw data
 - Feature Transformation (for model to use them)
   - Handling Missing Values
     - Deletion (row or column)
-    - Inputation (replace with default or mean, median, mode)
+    - Imputation (replace with default or mean, median, mode)
   - Feature Scaling
     - Normalization (Min-Max Scaling)
     - Standardization (Z-score normalization)
@@ -71,9 +71,9 @@
 
 ## Model Development
 
-- Model Selection (Linear Regresion, Logistic Regression, Decision Trees, Gradient Boosting Decision Trees and Random Forset, SVM, Neural Network, Deep Neural Network, Tranformers)
+- Model Selection (Linear Regression, Logistic Regression, Decision Trees, Gradient Boosting Decision Trees and Random Forest, SVM, Neural Network, Deep Neural Network, Transformers)
 - Model Training
-  - Construting the dataset
+  - Constructing the dataset
     - Raw Data
     - Feature and label engineering
     - Sampling strategy
@@ -98,7 +98,7 @@
   - Ranking
     - Recall@K, Precision@K, MRR, NDCG
   - Natural Language
-    - BLUE, ROUGE
+    - BLEU, ROUGE
 - Online Evaluation
   - Ad-clicks
     - CTR, PTR, Revenue Lift
@@ -111,7 +111,7 @@
 
 - Cloud vs On-Device
 - Model Compression
-  - Knowledge Distilation: train a smaller model to mimic a larger model
+  - Knowledge Distillation: train a smaller model to mimic a larger model
   - Pruning: find the least useful parameter and set them to zero
   - Quantization: use fewer bits to represent the parameters
 - Productionizing
@@ -140,7 +140,7 @@
   - ReLU vs Sigmoid vs Tanh
   - Bias vs Variance
   - Underfitting vs Overfitting
-  - Knowledge Distilation
+  - Knowledge Distillation
   - Ranker vs ReRanker
   - Online feature computation vs Batch feature computation
 

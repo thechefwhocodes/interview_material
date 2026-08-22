@@ -4,7 +4,7 @@ Extractive Question Answering
         - Forms
         - Images
         - PDFs on policy
-    - Relation DB for structure data
+    - Relational DB for structured data
         - Patient information
         - Healthcare Provider
     - External data source like EHR 
@@ -14,22 +14,22 @@ Extractive Question Answering
     - External Data
         - Fetch via EHR
         - use Text to API
-    - Structure Data
+    - Structured Data
         - Store data in database (for Text to SQL)
         - Convert data to notes for LLM to process tabular data
     - Unstructured Data
         - Chunk documents by semantic boundaries and not fixed length
         - Add document summary to each chunk to preserve the overall context of the document
     - Images
-        - ViT to embedd images
+        - ViT to embed images
         - Vision Language Models
     - Joint Embedding Architecture to unify all embeddings 
         - use domain specific model to generate embeddings
-        - Best used for multimodel search (Cross-Modal Retrieval), for Visual Heavy Documentation, for Contextual Grounding, when image is needed to understand text context 
+        - Best used for multimodal search (Cross-Modal Retrieval), for Visual Heavy Documentation, for Contextual Grounding, when image is needed to understand text context 
         - Leverage Contrastive Learning or Fine-Tune CLIP
 - LLM
     - Mid Training
-        - Train the model on domain specfic corpus on next token prediction task
+        - Train the model on domain specific corpus on next token prediction task
     - Supervised Fine Tuning
         - Train the model to follow instructions
             - User: [PROMPT], AI [RESPONSE]
@@ -43,7 +43,7 @@ Extractive Question Answering
         - Winning response should be picked based on Evidence Grounding
 - Retrieval
     - Hierarchical RAG
-        - Works when relevant context in not scattered across 1000+ pages
+        - Works when relevant context is not scattered across 1000+ pages
             - Every document needs a summary layer
         - When LLM don't need domain specific knowledge  
         - Use Tree Structure
@@ -61,7 +61,7 @@ Extractive Question Answering
             - If claim is not backed by chunks, re-read/re-retrieve chunks
     - LLM as a Judge
 - Observability and Tracing
-    - Every peice of generated text should be backed by the source and reasonsing (via Chain of Thoughts via citation in LLM)
+    - Every piece of generated text should be backed by the source and reasoning (via Chain of Thoughts via citation in LLM)
     - PII masking
     - Human in the loop for final check 
 
@@ -71,15 +71,15 @@ Train a Cross Encoder for Ranking:
 - Prepare training dataset
     - Use established dataset for domain specific query-documents pairs 
     - Use LLM to create questions based on the documents snippets
-    - Use section header as query and paragraph as the relavent document
+    - Use section header as query and paragraph as the relevant document
     - Have Human review synthetic pairs
 - Add Hard Negative
-    - Use BM25 to fetch documents which has keywords but not relavent to query
+    - Use BM25 to fetch documents which has keywords but not relevant to query
 - Fine Tune model
     - [CLS] + query + [SEP] + document
     - Train the full model
         - use [CLS] token for classifier head
-        - or use Mean Polling (average of all tokens) for classifier head 
+        - or use Mean Pooling (average of all tokens) for classifier head 
         - Use LoRA
     - Test the model on hidden dataset
 - Use Fine-Tuned Cross Encoder in RAG
