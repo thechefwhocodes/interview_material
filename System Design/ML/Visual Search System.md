@@ -31,8 +31,6 @@
 - ML Category
   - Representation Learning
 
-
-
 ## Data Preparation
 
 - Data Sources
@@ -52,8 +50,6 @@
         - Z-score normalization
 - Feature Engineering & Transformation
   - Image Embeddings
-
-
 
 ## Model Development
 
@@ -90,8 +86,6 @@
         - And calculate Cross Entropy Loss between the Softmax scores and label
   - Training from scratch or fine-tuning, either works
 
-
-
 ## Evaluation
 
 - Offline Evals
@@ -111,8 +105,6 @@
 - Online Evals
   - CTR
 
-
-
 ## Deployment and Serving
 
 - On-Cloud Deployment
@@ -126,8 +118,6 @@
     - Calculate cosine similarity between image and candidates
     - Return ranked result
 
-
-
 ## Monitoring
 
-- 
+-

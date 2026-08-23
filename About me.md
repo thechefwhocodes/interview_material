@@ -1,6 +1,6 @@
 # About me
 
-Senior Machine Learning Engineer with 7+ years of experience designing, scaling, and deploying end-to-end ML systems—specializing in search, ranking, recommendation and LLM workflows across billions of items and massive user bases. 
+Senior Machine Learning Engineer with 7+ years of experience designing, scaling, and deploying end-to-end ML systems—specializing in search, ranking, recommendation and LLM workflows across billions of items and massive user bases.
 
 ---
 
@@ -25,41 +25,41 @@ Around the same time CTO left and the company had to re-evaluated their roadmap.
 ## Phia Search Platform
 
 - Situation
-    - Search powered by the Google Shopping API.
-    - Zero control over customer experience.
-    - Premium retail partners had strict constraints.
-    - Stakeholders: CTO, CEO, Business Partnership teams, and end-users.
+  - Search powered by the Google Shopping API.
+  - Zero control over customer experience.
+  - Premium retail partners had strict constraints.
+  - Stakeholders: CTO, CEO, Business Partnership teams, and end-users.
 - Task
-    - Core Objective: Replace Google Shopping API by building an in-house Search platform from scratch.
-    - Key Challenges: Scale to 500M products with low latency, high relevance, and high availability.
-    - Strategy: Run a POC on 5M products (shoes) before scaling to the full 500M catalog.
+  - Core Objective: Replace Google Shopping API by building an in-house Search platform from scratch.
+  - Key Challenges: Scale to 500M products with low latency, high relevance, and high availability.
+  - Strategy: Run a POC on 5M products (shoes) before scaling to the full 500M catalog.
 - Action
-    - Built a distributed ETL pipeline 
-        - Using Airflow, Cloud Run jobs, Dataproc, and Open Search.
-    - LLM and Vector Search
-        - Utilized LLMs for entity extraction
-        - Supervised Fine-tuning Qwen3 8B models
-        - Built evals (Gold dataset and LLM-as-a-Judge)
-        - Generated embeddings using Fashio Clip
-        - Ingested documents into OpenSearch.
-    - Built idempotent architectures to handle volume of data
-    - Search & Ranking Optimization
-        - Built a multimodal search experience using text and image embeddings 
-        - Built custom XGBoost ranker
-        - Fine-tuned OpenSearch cluster performance
-            - 
-    - Testing & Validation
-        - Applied stage-by-stage sanity checks, 
-        - Offline LLM/search evaluations
-        - Internal dogfooding
-        - Controlled A/B test.
+  - Built a distributed ETL pipeline
+    - Using Airflow, Cloud Run jobs, Dataproc, and Open Search.
+  - LLM and Vector Search
+    - Utilized LLMs for entity extraction
+    - Supervised Fine-tuning Qwen3 8B models
+    - Built evals (Gold dataset and LLM-as-a-Judge)
+    - Generated embeddings using Fashio Clip
+    - Ingested documents into OpenSearch.
+  - Built idempotent architectures to handle volume of data
+  - Search & Ranking Optimization
+    - Built a multimodal search experience using text and image embeddings
+    - Built custom XGBoost ranker
+    - Fine-tuned OpenSearch cluster performance
+      -
+  - Testing & Validation
+    - Applied stage-by-stage sanity checks,
+    - Offline LLM/search evaluations
+    - Internal dogfooding
+    - Controlled A/B test.
 - Result
-    - Reduced Latency: Search response time dropped from 700ms to 500ms at massive scale.
-    - Boosted Engagement: Delivered 2x increase in product clicks and an 8x increase in product favoriting.
+  - Reduced Latency: Search response time dropped from 700ms to 500ms at massive scale.
+  - Boosted Engagement: Delivered 2x increase in product clicks and an 8x increase in product favoriting.
 - Reflection & Next Steps
-    - Dimension Reduction: Reduce embedding dimensions to lower vector storage costs further.
-    - Deduplication: Implement automated product deduplication across incoming merchant feeds.
-    - Personalization: Utilize user features to make the experience more personalized.
+  - Dimension Reduction: Reduce embedding dimensions to lower vector storage costs further.
+  - Deduplication: Implement automated product deduplication across incoming merchant feeds.
+  - Personalization: Utilize user features to make the experience more personalized.
 
 ---
 

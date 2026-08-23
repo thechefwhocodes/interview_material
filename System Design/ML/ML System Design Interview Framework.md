@@ -34,8 +34,6 @@
       - PPO
       - GRPO
 
-
-
 ## Data Preparation
 
 - Data Engineering (Design and build pipelines for collecting, storing, retrieving and processing)
@@ -45,7 +43,7 @@
     - Data Type
       - Structured (stored in relational dbs)
         - Numerical
-          - Continuous (House Prices) 
+          - Continuous (House Prices)
           - Discrete (Number of houses sold)
         - Categorical
           - Ordinal (gender)
@@ -67,8 +65,6 @@
     - One-hot Encoding (Red -> [0, 0, 1], Green -> [0, 1, 0], Blue -> [1, 0, 0]) - use when no relationship between categorical features
     - Embedding Encoding
 
-
-
 ## Model Development
 
 - Model Selection (Linear Regression, Logistic Regression, Decision Trees, Gradient Boosting Decision Trees and Random Forest, SVM, Neural Network, Deep Neural Network, Transformers)
@@ -85,8 +81,6 @@
   - Training from scratch vs fine-tuning
   - Distributed Tuning
     - Data vs Model Parallelization
-
-
 
 ## Evaluation
 
@@ -105,8 +99,6 @@
   - Recommendations
     - CTR, Total watch time, # of completed videos
 
-
-
 ## Deployment and Serving
 
 - Cloud vs On-Device
@@ -120,8 +112,6 @@
 - Prediction Pipeline
   - Batch vs Online prediction
 
-
-
 ## Monitoring Infra
 
 - System failure
@@ -129,8 +119,6 @@
 - Monitor
   - Operation related metrics: Latency, Throughput, # of prediction requests, CPU/GPU utilization
   - Data Drift, Model Accuracy, Model Version
-
-
 
 ## Question
 
@@ -143,4 +131,3 @@
   - Knowledge Distillation
   - Ranker vs ReRanker
   - Online feature computation vs Batch feature computation
-
