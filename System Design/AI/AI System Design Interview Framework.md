@@ -34,7 +34,7 @@
 - Choosing the right GenAI pattern
     - Pure Generation
     - RAG: when answer needs to be grounded
-    - Agentic (Single vs Multi-Agent)
+    - Agentic (Single vs Multi-Agent - task complexity)
         - Multi-step reasonsing
         - External actions or API calls
     - Fine-tuning vs Prompting: needed when domain vocabulary can't be achieved via prompting alone
@@ -68,6 +68,12 @@
     - Single LLM vs Workflow vs Multi-Agent
     - Control flow lives in orchestrator
     - Tool Call design
+    - Loop Stopage
+        - Task Completion
+        - Max Steps
+        - Tool-Call return error (multiple time)
+        - Confidence drop below threshold
+        - Safety trigger fires
 - Model Selection
     - Frontier model vs small models
     - Model routing - cheap models for easy queries, frontier for planning
@@ -90,7 +96,7 @@
             - Groundedness, Correctness, Completness, Confidence
 - Online Evaluation
     - LLM-as-a-Judge on small %age of traces
-    - Human in the loop when confidence is low and stakes are high
+    - Human in the loop when confidence is low or stakes are high (using classifier)
     - User feedback signals
         - Explicit Feedback (thumbs up/down)
         - Implicit Feedback (edit rate, abandended conversations)
@@ -99,6 +105,24 @@
     - Rules for output filters (toxic content, factual consistency, PII leakage)
     - Input filter pass → Agent Turn → Output filter pass
         - Fallback behavior when a guardrail blocks a response
+
+## Deployment & Serving
+- Productionizing
+  - Shadow deployment: Traffic goes to both models, but only original model return response to user. The new model's response is captured but not returned
+  - A/B testing
+- Model Swap Gating
+    - Offline Gate
+        - Golden dataset (Statisfied)
+            - Read Input
+            - Retrieved Context
+            - Expected Output
+        - Run the agent against the golden dataset and mesure the metrics
+        - New model score should not dip below old model score
+        - 
+    - Online Gate
+        - Traffic Mirror
+        - A/B testing
+        - Measure same metrics
 
 ## Monitoring & Observability
 - Tracing
@@ -113,4 +137,4 @@
     - Cost per request
     - CPU/GPU utilization
 - Feedback Loop
-    - User Signas
+    - User Signals
