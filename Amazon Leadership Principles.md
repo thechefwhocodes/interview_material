@@ -138,7 +138,7 @@
 
 - Hire and Develop the Best: **Feedback**
 
-- Insist on High Standards: 
+- Insist on High Standards: **Phia Search Platform**
 
 - Think Big: **Shop the Look**
 
