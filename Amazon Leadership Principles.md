@@ -4,46 +4,55 @@
 
 ---
 
-### Phia Search Platform
+## Phia Search Platform
 
 **Situation**
-- At Phia, the search experience ran entirely on the Google Shopping API.
-- There was no control over personalization.
-- And premium partners were complaining that their products were being surfaced next to products from  marketplace like eBay and Poshmark, which hurted their brand reputation.
+- At Phia, search experience was outsourced to the Google Shopping API.
+- Zero control over customer's shopping experience including personalization and discovery.
+- Premium partners complained their products surfaced next to products from marketplaces like eBay and Poshmark, which hurt their brand reputation.
 
 **Task**
-- The leadership was hesitant to invest in building an in-house search platform.
-- They were worried that it could take months of engineering effort without any guarantee that it would actually work
-- For them the safer option was to just keep the degraded experience.
+- Leadership, including the CTO, were skeptical about investing in an in-house search platform.
+- Worried it would take months of engineering effort with no guarantee that it will work better than existing experience.
 
 **Action**
-- I proposed we start with just the shoe category, which involed 5M products instead of 500M.
-- And built a real end to end pipeline to test whether an in-house system could actually deliver a better experience.
+- Instead of accepting the degraded experience, I proposed running a POC of in-house search experience which can be built quickly.
+- I picked a single category, shoes, roughly 5M products instead of the entire 500M catalog.
+- Built an end-to-end ETL pipeline that downloaded and normalized partner data.
+- Used LLMs to extract missing product metadata.
+- Utilized fashion-CLIP models to generate embeddings for the products
+- Ingested all documents into an OpenSearch cluster to enable low-latency inference.
+- Ran an A/B test to understand if in-house search system is better than Google Shopping API.
 
 **Result**
-- The latency dropped from 700ms to 500ms
-- Clicks and Product to Watchlist eight 2x and 8x respectively.
-- This proved to the leadership that building an in-house platform across 500M products is essential to provide better customer experience.
+- Latency dropped from 700ms to 500ms.
+- Clicks improved 2x and Product-to-Watchlist improved 8x.
+- This shifted leadership from keeping the degraded experience to committing to scale the in-house platform across all 500M products.
 
 ---
 
-### Open Search Partitioning
+### Open Search Partitioning (Needs Improvement)
+
 **Situation**
-- At Phia, as we were scaling the search platform, the CTO, wanted to partition our OpenSearch cluster into physical indexes per category and brand, to reduce query latency by shrinking the search space.
+- At Phia, as we scaled the search platform from 5M to 500M products
+- CTO wanted to physically partition OpenSearch cluster per brand and category to reduce inference latency by shrinking the search space per query.
 
 **Task**
-- I disagreed, because managing hundreds of physical indexes as we added more brands and verticals would have created significant infrastructure and DevOps overhead. 
-- I proposed we go with logical partitioning through metadata and pre-filtering ANN search
-- But he was skeptical of my approach, because in his understanding, since ANN algorithm would still be navigating a similarly sized vector space, the latency wouldn't meaningfully improve. 
-- This wasn't a case of him dismissing an idea, he had a real technical reason to doubt it.
+- Disagreed, managing hundreds of physical indexes as we scale would create significant infrastructure and DevOps overhead.
+- Proposed logical partitioning instead, using metadata tagging and pre-filtering ANN search.
+- CTO was skeptical on real technical grounds: believed the ANN search would be traversing a similarly sized vector space, so the latency gains wouldn't be meaningful.
 
 **Action**
-- Instead of going back and forth on whose intuition was right, I proposed we settle it with a benchmark on real production data. 
-- I ran both approaches head to head, physical indexes per brand versus logical indexes with pre-filtering.
+- Proposed we run a head-to-head benchmark on real production data.
+- Picked brands and categories with 100M products, so the test would reflect real production scale.
+- Added metadata information to 100M products by running an ETL pipeline
+- Built physical index and logical partition.
+- Benchmarked queries against both and measured P90 and P99 latency using a benchmarking tool.
 
 **Result**
-- The benchmarking results, showed latency difference was negligible. 190ms versus 200ms. 
-- This let us choose the logical indexing approach with confidence, avoiding the engineering overhead of managing physical indexes at scale.
+- Benchmark showed the latency difference was negligible: 190ms for physical partitioning vs 200ms for logical partitioning.
+- 10ms reduction wasn't worth the engineering and DevOps overhead of managing physical indexes at scale.
+- Commited to logical partitioning approach.
 
 ---
 
@@ -77,7 +86,7 @@
 
 ---
 
-### Shop the Look
+### Shop the Look (Needs Improvements)
 **Situation**
 - At eBay, my PM pitched an idea for letting users upload a photo and virtually try on different clothing items.
 - We both felt it was strong enough idea to pitch as a proof of concept for leadership.
@@ -90,7 +99,9 @@
 
 **Action**
 - I designed the end to end system, then pitched it directly to the iOS team's PM, two of their engineers and a designer.
-- I got them to volunteer their time, and led that small cross functional group of two ML engineers, two iOS engineers and a designer, to build the whole flow in under a week.
+- I got them to volunteer their time, and led that small cross functional group of two ML engineers, two iOS engineers and a designer.
+- Held daily sync, unblocked engineers on approach by talking to SMEs (Subject Matter Experts) and tested end-to-end experience rigously with mutiple uses.
+- We build the whole flow in under a week.
 
 **Result** 
 - We shipped a working end to end experience inside the eBay app.
@@ -103,7 +114,7 @@
 ### Feedback
 
 **Situation**
-- At eBay, I was leading a team of 6 engineers which was a cross-functional team, building the next generation recommendations platform.
+- At eBay, I was leading a cross-functional team of 6 engineers, building the next generation recommendations platform.
 - I used to gave weekly updates to a stakeholder group that included senior engineers, two directors, and a VP.
 
 **Task**
