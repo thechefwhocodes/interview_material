@@ -57,6 +57,7 @@
 ---
 
 ### Context Management and Memory Layer
+
 **Situation**
 - At Bezi, the leadership (including CEO, CTO, and product lead) had a hypothesis, inspired by tools like Obsidian.
 - They envisioned that context management and memory layer could make coding agents more accurate. Along with making them cheaper and faster. 
@@ -86,7 +87,8 @@
 
 ---
 
-### Shop the Look (Needs Improvements)
+### Shop the Look
+
 **Situation**
 - At eBay, my PM pitched an idea for letting users upload a photo and virtually try on different clothing items.
 - We both felt it was strong enough idea to pitch as a proof of concept for leadership.
@@ -122,11 +124,13 @@
 - I was spending too much time on implementation details and technical comparisons, and not enough on high level progress.
 
 **Action**
+- I initially pushed back on the feedback, stating technical discussions were necessary for senior engineers
+- We created a different sync to discuss technical details with Senior Engineers
 - I took that feedback and restructured my next updates.
-- I shifted away from technical difficulties, towards
+- I shifted away from technical details to
   - Overall Architecture
   - Milestone progress against the roadmap
-  - And testing status framed at a level that VP could track without needing engineering context.
+  - And testing status framed in a way the VP could track without needing engineering context.
 
 **Result**
 - Engagement from the VP changed visibly.
