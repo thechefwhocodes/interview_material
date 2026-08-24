@@ -18,7 +18,7 @@
 **Action**
 - Instead of accepting the degraded experience, I proposed running a POC of in-house search experience which can be built quickly.
 - I picked a single category, shoes, roughly 5M products instead of the entire 500M catalog.
-- Built an end-to-end ETL pipeline that downloaded and normalized partner data.
+- Built an end-to-end ETL pipeline that downloaded and normalized data.
 - Used LLMs to extract missing product metadata.
 - Utilized fashion-CLIP models to generate embeddings for the products
 - Ingested all documents into an OpenSearch cluster to enable low-latency inference.
@@ -31,7 +31,7 @@
 
 ---
 
-### Open Search Partitioning (Needs Improvement)
+### Open Search Partitioning
 
 **Situation**
 - At Phia, as we scaled the search platform from 5M to 500M products
@@ -53,6 +53,35 @@
 - Benchmark showed the latency difference was negligible: 190ms for physical partitioning vs 200ms for logical partitioning.
 - 10ms reduction wasn't worth the engineering and DevOps overhead of managing physical indexes at scale.
 - Commited to logical partitioning approach.
+- Set the framework to lead with data instead of priors and biases
+
+---
+
+### Open Source LLM
+
+**Situation**: 
+- We used GPT-4o mini for entity extraction task for product metadata enrichment. 
+- To cut cost and latency, we tested swapping the model with a Qwen3 8B open-source model.
+
+**Task**: 
+- I was responsible for the swap and the roll out of the new model.
+
+**Action**:
+- I compared the new model against GPT-4o mini model on offline metrics.
+- Had LLM-as-a-Judge metric monitoring live traffic.
+- Under deadline pressure, I skipped the pre-launch shadow test and went straight to production.
+- Caught a sharp error-rate spike within an hour
+- Real products were getting mistagged.
+- Rolled back to GPT-4o mini model immediately.
+- Since bad metadata had already been written for ~1 hour, I re-ran that day's pipeline on original model to overwrite the incorrect tags.
+- Set a hard rollout gate for future model swaps/updates: 
+  - A new model can't go live unless it beats the baseline offline metrics
+  - No launch without A/B test or Shawdow deployment.
+
+**Result**: 
+- Full data corrected same day
+- ~1 hour of real impact contained
+- The two-gate process is now standard for every model swap/update.
 
 ---
 
@@ -60,30 +89,31 @@
 
 **Situation**
 - At Bezi, the leadership (including CEO, CTO, and product lead) had a hypothesis, inspired by tools like Obsidian.
-- They envisioned that context management and memory layer could make coding agents more accurate. Along with making them cheaper and faster. 
-- They wanted to pass on these savings to the customers.
-- And wanted to build a product around that idea.
+- They envisioned that context management and memory layer could make coding agents more accurate. 
+- Along with making them cheaper and faster. 
+- They wanted to pass on these $ savings to the customers and differentiate themselves from competitors.
 
 **Task**
 - I was hired specifically for this project.
 - There was no clear direction on how to build it.
-- So I decide to validate their hypothesis, and share the finding with the leadership.
+- So I decide to validate their hypothesis and share the finding with the leadership.
 
 **Action**
 - Instead of jumping straight to a monthslong build, I proposed running POCs first.
-- I researched context management and memory layer approaches.
-- I picked real projects with actual usage in collaboration with GTM.
-- And ran a controlled comparison, involing coding agent with context management and memory layer versus without it.
-- The leadership pushed back on my initial methodology. 
-- They wanted broader coverage across projects of different complexity.
-- I incorporated that and expanded the testing.
+- I researched context management and memory layer approaches across industry leaders like Cursor, Codex and Claude Code.
+- I had to ran a controlled experiment, involing coding agent with context management and memory layer versus without it.
+- I picked real projects and tasks with actual usage in collaboration with GTM.
+- The leadership pushed back on my initial project list stating it wasn't exhastive enough.
+- They wanted broader coverage across projects and tasks of different complexity.
+- I initially resisted but eventually cooperated and expanded my experiment lists.
 
 **Result**
 - Context management and memory layer did improve accuracy, cutting the number of turns needed by 30%.
-- But it did not reduce latency or cost, because carrying that context across a session adds up in tokens.
-- Even after retesting across more projects and complexity levels, the result held.
+- But it did not reduce latency or cost, because carrying context forward in the session adds tokens back.
 - I had to tell leadership their hypothesis didn't hold up.
-- They were disappointed, but the finding was solid and saved the company months of misdirected build effort.
+- They were disappointed and skeptic of the number.
+- Booked seperate sessions to walk them through the actual agent behaviour and why it didn't reflect in latency and cost reduction.
+- Decided to pivot the strategy toward using context layer as workspace for architecture and intent feature instead of a measure to reduce cost
 
 ---
 
@@ -133,7 +163,7 @@
   - And testing status framed in a way the VP could track without needing engineering context.
 
 **Result**
-- Engagement from the VP changed visibly.
+- We noticed visible change in the VP's engagement.
 - He went from passively acknowledging updates to actively asking questions about the progress and how the team was doing.
 - He was actually absorbing and engaging with the information rather than just nodding along.
 
