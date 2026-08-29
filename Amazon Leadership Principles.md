@@ -177,17 +177,15 @@
 ## 7. Mentoring
 **Situation**
 - A junior engineer owned a pipeline job that was failing randomly. 
-- The data contract between an upstream and downstream job wasn't clearly defined.
 
 **Task**
 - Unblock the engineer quickly without just taking over the fix, and prevent the same class of bug from recurring.
 
 **Action**
-- Paired with the engineer to trace the failure back, rather than debugging it for them.
+- Paired with the engineer to find the root cause, rather than debugging it for them.
 - Together, we found the real issues: missing null-handling checks and an inconsistent feature name between the two jobs.
 - Taught them to write small, isolated test cases that could reliably reproduce the bug.
 - Coached them on how to communicate the issue and proposed fix to the upstream product team
-- So the two teams could agree on and document the contract properly.
 
 **Result**
 - The engineer shipped the fix themselves, and the pipeline stabilized. 

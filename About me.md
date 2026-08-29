@@ -35,10 +35,12 @@ Around the same time CTO left and the company had to re-evaluated their roadmap.
   - Strategy: Run a POC on 5M products (shoes) before scaling to the full 500M catalog.
 - Action
   - Built a distributed ETL pipeline
+    - Data Download -> Cleaning -> Normalization -> Entity Extraction -> Data Ingestion
     - Using Airflow, Cloud Run jobs, Dataproc, and Open Search.
   - LLM and Vector Search
     - Utilized LLMs for entity extraction
     - Supervised Fine-tuning Qwen3 8B models
+      - Reduced cost from $1200 to $400 which translated to $120K annualized saving
     - Built evals (Gold dataset and LLM-as-a-Judge)
     - Generated embeddings using Fashio Clip
     - Ingested documents into OpenSearch.
@@ -47,7 +49,6 @@ Around the same time CTO left and the company had to re-evaluated their roadmap.
     - Built a multimodal search experience using text and image embeddings
     - Built custom XGBoost ranker
     - Fine-tuned OpenSearch cluster performance
-      -
   - Testing & Validation
     - Applied stage-by-stage sanity checks,
     - Offline LLM/search evaluations
@@ -58,6 +59,8 @@ Around the same time CTO left and the company had to re-evaluated their roadmap.
   - Boosted Engagement: Delivered 2x increase in product clicks and an 8x increase in product favoriting.
 - Reflection & Next Steps
   - Dimension Reduction: Reduce embedding dimensions to lower vector storage costs further.
+    - This may impact the retrieval accuracy and have to judged against offline gates
+    - The trade-off between reduced accuracy vs latency improvement have to judged
   - Deduplication: Implement automated product deduplication across incoming merchant feeds.
   - Personalization: Utilize user features to make the experience more personalized.
 
