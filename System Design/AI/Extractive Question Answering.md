@@ -84,4 +84,3 @@ Train a Cross Encoder for Ranking:
     - Use LoRA
   - Test the model on hidden dataset
 - Use Fine-Tuned Cross Encoder in RAG
-
