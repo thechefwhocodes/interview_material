@@ -34,6 +34,8 @@
       - PPO
       - GRPO
 
+
+
 ## Data Preparation
 
 - Data Engineering (Design and build pipelines for collecting, storing, retrieving and processing)
@@ -43,7 +45,7 @@
     - Data Type
       - Structured (stored in relational dbs)
         - Numerical
-          - Continuous (House Prices)
+          - Continuous (House Prices) 
           - Discrete (Number of houses sold)
         - Categorical
           - Ordinal (gender)
@@ -65,6 +67,8 @@
     - One-hot Encoding (Red -> [0, 0, 1], Green -> [0, 1, 0], Blue -> [1, 0, 0]) - use when no relationship between categorical features
     - Embedding Encoding
 
+
+
 ## Model Development
 
 - Model Selection (Linear Regression, Logistic Regression, Decision Trees, Gradient Boosting Decision Trees and Random Forest, SVM, Neural Network, Deep Neural Network, Transformers)
@@ -82,6 +86,8 @@
   - Distributed Tuning
     - Data vs Model Parallelization
 
+
+
 ## Evaluation
 
 - Offline Evaluation
@@ -92,18 +98,20 @@
   - Ranking
     - Recall@K, Precision@K, MRR, NDCG
   - Natural Language
-    - BLEU, ROUGE
+    - BLUE, ROUGE
 - Online Evaluation
   - Ad-clicks
     - CTR, PTR, Revenue Lift
   - Recommendations
     - CTR, Total watch time, # of completed videos
 
+
+
 ## Deployment and Serving
 
 - Cloud vs On-Device
 - Model Compression
-  - Knowledge Distillation: train a smaller model to mimic a larger model
+  - Knowledge Distilation: train a smaller model to mimic a larger model
   - Pruning: find the least useful parameter and set them to zero
   - Quantization: use fewer bits to represent the parameters
 - Productionizing
@@ -111,6 +119,8 @@
   - A/B testing
 - Prediction Pipeline
   - Batch vs Online prediction
+
+
 
 ## Monitoring Infra
 
@@ -120,6 +130,8 @@
   - Operation related metrics: Latency, Throughput, # of prediction requests, CPU/GPU utilization
   - Data Drift, Model Accuracy, Model Version
 
+
+
 ## Question
 
 - Model training
@@ -128,6 +140,7 @@
   - ReLU vs Sigmoid vs Tanh
   - Bias vs Variance
   - Underfitting vs Overfitting
-  - Knowledge Distillation
+  - Knowledge Distilation
   - Ranker vs ReRanker
   - Online feature computation vs Batch feature computation
+

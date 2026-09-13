@@ -6,7 +6,7 @@
 ## Context & Problem
 
 - Before I joined, Phia's entire search experience was outsourced to the Google Shopping API
-- This meant zero control over personalization and discovery experiences for customer
+- This meant zero control over personalization, discovery experiences for customer
 - Premium retail partners had strict requirements on how their products surfaced on our platform
 - Stakeholders: CEO, CTO, business partnerships team, end users
 - *Goal*
@@ -20,21 +20,20 @@
 To de-risk the bet, I started with 5M shoe-category products before committing to building the platform for 500M products
 
 **Pipeline architecture**
-I build the ETL pipeline for the POC using 5M products
 - Orchestration: Airflow
 - Compute: GCP Cloud Run jobs + PySpark
 - Steps: download → normalize/clean → metadata enrichment (GPT-4o-mini) → embedding generation (FashionCLIP model) → ingest into OpenSearch
 
 **Eval methodology for Metadata Enrichment**
 - Built a golden evaluation dataset
-    - Human-labeled (internal team + Mechanical Turk) as ground truth
+    - Human-labeled core set (internal team + Mechanical Turk) as ground truth
     - Wrote explicit labeling rubric with edge cases (e.g., "navy vs. black when image is ambiguous")
     - Measured labeler's agreement (3 labels for each dataset)
     - Rewrote the rubric until agreement was consistently high (~95%)
 - LLM-as-a-Judge
     - Used a **different** model family (Claude Sonnet 4) than the production model to judge outputs
     - Measured three metrics:
-        - **Groundedness** — strict threshold, ~90%, since a hallucinated attribute can misleads customers
+        - **Groundedness** — strict threshold, ~90%, since a fabricated attribute misleads customers
         - **Correctness** — ~90% threshold, tied back to business tolerance (calibrated against return/complaint-rate data)
         - **Completeness** — looser threshold, ~75%, since a missing field is a minor annoyance, not active harm
 
@@ -75,7 +74,7 @@ I build the ETL pipeline for the POC using 5M products
 - Result: fine-tuned model matched and outperformed GPT-4o-mini on correctness, comparable on groundedness/completeness across multiple runs
 
 **Inference-time quality control**
-- LLM-as-judge (Claude Sonnet 4) evaluated % of traces against the production traffic
+- LLM-as-judge (Claude Sonnet 4) evaluated % of traces against the golden dataset
 - Escalation to human review when: 
     - Model confidence is low
     - Judge and model disagree
@@ -103,11 +102,6 @@ I build the ETL pipeline for the POC using 5M products
 
 - CTR 2x, add-to-watchlist 8x
 - Latency 700ms → 500ms
-
-## Next Steps
-
-- Deduping
-- Embedding dimension reduction
 
 ---
 
