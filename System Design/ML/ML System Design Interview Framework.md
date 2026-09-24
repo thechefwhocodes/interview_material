@@ -4,16 +4,15 @@
 
 - Business Objective
 - Functionality
-  - What features should the system support
+  - What all features should the system support
 - Data
-  - What is the data source
-  - How big is the data
-  - Is data labeled
+  - Is the training data available
 - Scale
   - How many users
   - How many items
 - Performance
   - Real-Time system or Batch
+- Summarize
 
 ## Framing the problem as ML task
 
