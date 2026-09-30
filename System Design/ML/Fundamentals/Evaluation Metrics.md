@@ -18,6 +18,16 @@
 - Among Top K items, how many of them are relevant
 - It doesn't consider the rank of relevant items among Top K
 
+### Micro F1
+
+- Equal weight to every individual sample
+- Calculates F1 score for each class, normalized by it's weightage
+
+### Macro F1
+
+- Equal weight to every class
+- Calculate F1 score for each class, avergaes it out across all classes
+
 ### mAP
 
 - Mean of the Average Precision
@@ -50,8 +60,32 @@
   - Ideal DCG = 5/log(2) + 4/log(3) + 2/log(4) + 1/log(5) + 0/log(6) = 8.954
   - nDCG = DCG / Ideal DCG = 6.151/8.954 = 0.6869
 
+### PR-Curve
+
+- Shows the trade-off between precision and recall
+- Precision and Recall is calculated using different probability thresholds (0.0 - 1.0)
+- The higher the area beneath the PR curve, more accurate the model
+
+---
+
 ## Online
 
 ### CTR
 
 - Number of Clicked Items / Total Number of Suggested Items
+
+### Video Completion Rate
+
+### Total Watch Time
+
+### Prevalence
+
+- Ratio of harmful posts which we didn't prevent and all posts on the platform
+
+### Valid Appeals
+
+- Number of posted which were deemed harmful but were applealed and re-versed
+
+### Proactive Rate
+
+- Ratio of harmful posts found and deleted before user report it

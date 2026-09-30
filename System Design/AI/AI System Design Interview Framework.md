@@ -37,8 +37,8 @@
   - Pure Generation
   - RAG: when answer needs to be grounded
     - Metadata filtering to retrieve documents
-    - Isolation enforcement at database layer as mandatory filter
-  - Agentic (Single vs Multi-Agent - task complexity)
+    - Row-level security using a policy enforced by the database engine itself on every query
+  - Agentic (Single vs Multi-Agent - task complexity - with light weight classifier for emergency, self-harm and escalate to human)
     - Multi-step reasoning
     - External actions or API calls
   - Fine-tuning vs Prompting: needed when domain vocabulary can't be achieved via prompting alone
@@ -56,7 +56,8 @@
     - Chunking Strategy
       - Fixed
       - Overlapping
-      - Graph Based/Recursive
+      - Semantic chunking
+      - Graph Based/Recursive (cross-reference)
 - Embedding & Indexing
   - Embedding models
   - Vector DB (Pinecone, PGVector, FAISS)

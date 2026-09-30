@@ -115,6 +115,9 @@
 
 - System failure
   - Data drift
+  - Model drift
+  - Feature drift
+  - Automated alerts
 - Monitor
   - Operation related metrics: Latency, Throughput, # of prediction requests, CPU/GPU utilization
   - Data Drift, Model Accuracy, Model Version
@@ -124,9 +127,17 @@
 - Model training
   - L1 vs L2 Regularization vs K-fold CV vs Dropout
   - Stochastic Gradient Descent (SGD) vs Adam
+    - SGD: Fixed learning rate
+    - Adam: Dynamic learning rate
   - ReLU vs Sigmoid vs Tanh
+    - ReLU: range (0,1), -ve values get 0
+    - Sigmoid: range (0,1)
+    - TanH: range (-1,1)
   - Bias vs Variance
-  - Underfitting vs Overfitting
+    - Bias correlated to underfitting
+    - Variance correlates to overfitting
   - Knowledge Distilation
   - Ranker vs ReRanker
+    - Ranker is the ML model
+    - ReRanker handles the business logic and doesn't involve ML model
   - Online feature computation vs Batch feature computation

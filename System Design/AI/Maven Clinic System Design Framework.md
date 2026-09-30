@@ -30,12 +30,12 @@
 ## 3. Architecture & Orchestration
 
 - Workflow vs Single agent vs multi-agent — justified by task complexity
-  - Lead agent routing to narrow specialists (appointments, provider search, health Q&A, support).
-  - Guardrails run before routing, not inside a specialist.
   - Single agent vs Multi agent
     - Rising turn counts - p99 increased pass a threshold
     - Increased Latency
     - Repeated tool-call - increase pass a threshold
+  - Lead agent routing to narrow specialists (appointments, provider search, health Q&A, support).
+  - Guardrails run before routing, not inside a specialist.
 - Tool set small on purpose
   — Existing APIs become tools
   - User identity is injected by code
@@ -56,13 +56,13 @@
   - Overlapping
   - Semantic
   - Graph/Recursive (cross-reference)
-- Embedding + vector DB (Pinecode, PGVector)
+- Embedding + vector DB (Pinecone, PGVector)
 - Hybrid search (vector + BM25)
 - Reranker
   - bi-encoder vs cross-encoder for top-k.
 - Isolation
   - App-layer: metadata filtering at query time.
-  - DB-layer: row-level security — a policy the database engine enforces on every query
+  - DB-layer: row-level security — a policy the database enforces on every query
   - Namespaces, separate stores (with different access controls and retention policy)
 - Memory/state
   - Session state vs long-term memory
@@ -76,7 +76,7 @@
   - Golden dataset
     - Example
       - Input (message + conversation history) + Expected Path (tools used) + Expected Output -> Correctness (human labeled)
-      - Including injection attempts ("ignore previous instructions")
+      - Including prompt injection attempts ("ignore previous instructions")
       - Ambiguous cases ("I am bleeding")
     - Seeded and continuously updated from production traces
     - low-confidence + previously flagged

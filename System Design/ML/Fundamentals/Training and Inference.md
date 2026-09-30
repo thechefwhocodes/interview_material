@@ -6,8 +6,6 @@
 
 ## Inference
 
-### Batch vs Real-time
-
 ### Nearest Neighbor
 
 - Exact
@@ -52,3 +50,11 @@
     - Send to ML Model for inference
   - Performance
     - PyTorch < ONNX < Triton + PyTorch <= Triton + ONNX
+
+## Continuous Learning
+
+- Overheads of Continous Learning
+  - Model gating
+  - Model checkpointing
+  - Rollback
+  - Handling data quality issues during incidents
