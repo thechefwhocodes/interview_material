@@ -20,52 +20,6 @@ Around the same time CTO left and the company had to re-evaluated their roadmap.
 
 ---
 
-# Project Walk through
-
-## Phia Search Platform
-
-- Situation
-  - Search powered by the Google Shopping API.
-  - Zero control over customer experience.
-  - Premium retail partners had strict constraints.
-  - Stakeholders: CTO, CEO, Business Partnership teams, and end-users.
-- Task
-  - Core Objective: Replace Google Shopping API by building an in-house Search platform from scratch.
-  - Key Challenges: Scale to 500M products with low latency, high relevance, and high availability.
-  - Strategy: Run a POC on 5M products (shoes) before scaling to the full 500M catalog.
-- Action
-  - Built a distributed ETL pipeline
-    - Data Download -> Cleaning -> Normalization -> Entity Extraction -> Data Ingestion
-    - Using Airflow, Cloud Run jobs, Dataproc, and Open Search.
-  - LLM and Vector Search
-    - Utilized LLMs for entity extraction
-    - Supervised Fine-tuning Qwen3 8B models
-      - Reduced cost from $1200 to $400 which translated to $120K annualized saving
-    - Built evals (Gold dataset and LLM-as-a-Judge)
-    - Generated embeddings using Fashio Clip
-    - Ingested documents into OpenSearch.
-  - Built idempotent architectures to handle volume of data
-  - Search & Ranking Optimization
-    - Built a multimodal search experience using text and image embeddings
-    - Built custom XGBoost ranker
-    - Fine-tuned OpenSearch cluster performance
-  - Testing & Validation
-    - Applied stage-by-stage sanity checks,
-    - Offline LLM/search evaluations
-    - Internal dogfooding
-    - Controlled A/B test.
-- Result
-  - Reduced Latency: Search response time dropped from 700ms to 500ms at massive scale.
-  - Boosted Engagement: Delivered 2x increase in product clicks and an 8x increase in product favoriting.
-- Reflection & Next Steps
-  - Dimension Reduction: Reduce embedding dimensions to lower vector storage costs further.
-    - This may impact the retrieval accuracy and have to judged against offline gates
-    - The trade-off between reduced accuracy vs latency improvement have to judged
-  - Deduplication: Implement automated product deduplication across incoming merchant feeds.
-  - Personalization: Utilize user features to make the experience more personalized.
-
----
-
 # Referral Notes
 
 Aashish is a Machine Learning Engineer experienced in powering large-scale search, ranking, recommendation and LLM workflows for e-commerce engines. Spearheaded the real-time ranking infrastructure for eBay Live, engineering streaming and batch data pipelines (Kafka, Flink, Spark) and AI-driven interactive workflows that directly influenced $2B+ in GMV. Deeply passionate about solving low-latency discovery challenges in fast-paced, live shopping environments—connecting buyers and sellers in real-time through high-stakes, production-ready ML systems.
@@ -73,3 +27,56 @@ Aashish is a Machine Learning Engineer experienced in powering large-scale searc
 Aashish and I built a side project unifying voice and text orchestration for AI agents. Working with him showed me his incredible technical depth—he’s obsessively thorough with low-latency architecture and never settles for surface-level fixes. He lives and breathes this tech, and he’d be a massive asset for Hyde.
 
 ---
+
+# Life Story
+
+- Grew up in a village in India.
+- No real school nearby, and nobody in my family had been past high school, so there was no map for any of this.
+- A teacher told my parents I should be somewhere better, and my parents uprooted the household to a city for it.
+- I've never forgotten that someone else paid a cost for my first opportunity.
+
+- What I did with it was grind. 
+- I wasn't the smartest kid in those rooms, I was the one who'd put in hours.
+- At eighteen I got interested in big data, which in 2014 was the thing.
+- I read everything I could get hold of, and when my uncle offered to introduce me to a professor at Trinity, I made sure I had something worth saying.
+- That conversation turned into an admission offer.
+- And for four years I studied in Dublin on transport and fuel modelling for the city.
+
+- I realized Europe wasn't where the AI work was happening, so I left somewhere comfortable for Columbia
+- With no one around me who'd done it and no idea how the process worked.
+- I figured it out.
+- That's the pattern you'll see repeatedly: I'm comfortable with doing the uncomfortable and figuring it out.
+
+- Three years at eBay on search ranking and recommendations taught me how systems behave at scale.
+- I kept building agent and RAG side projects at night, and I realised I'd only ever inherited systems, never started one.
+- So last year I left for startups.
+- My family thought it was a mistake.
+
+- I have mixed feelings, honestly.
+- The first company turned out to be fudging revenue — it's public now.
+- The second one laid me off after proving the hypothesis of the leadership wrong.
+
+- But the work itself was the best of my career.
+- I learnt a lot and that's exactly what drives me in life. Learning.
+
+---
+
+- I told the CTO directly that I wouldn't build toward inflated numbers, and I said it in writing so there was a record.
+- When the answer was do whatever it takes, I resigned and said why.
+- I didn't have another job lined up. I'd left eBay four months earlier, so it was an expensive thing to be right about.
+
+---
+
+- I replaced an outsourced search stack with an in-house system
+  - Over 500 million products
+  - CTR doubled, add-to-watchlist went up eightfold, latency dropped from 700 to 500 milliseconds
+  - Validated with A/B and reverse A/B test.
+- Also cut our enrichment bill by two-thirds by fine-tuning Qwen in place of a frontier model.
+
+---
+
+### What would a manager flag about you today?
+
+- I lose focus and get distracted when I'm working on just one thing.
+- So I cap myself at two or three active projects simulatenously.
+- I tell my manager which is primary, and flag delays before they ask me.
